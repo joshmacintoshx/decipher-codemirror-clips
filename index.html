@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Decipher Clips</title>
+	<link rel="stylesheet" href="codemirror-5.43.0/lib/codemirror.css">
+	<link rel="stylesheet" href="codemirror-5.43.0/addon/hint/show-hint.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          File
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Open</a>
+          <a class="dropdown-item" href="#">Save</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Close</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Edit
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Preferences
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" data-toggle="modal" href="#settingsModal">Settings</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container-fluid" id="code-container">
+	<textarea id="code"></textarea>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!------------------------ BOOTSTRAP SCRIPTS --------------------------------------------------->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-------------------------- CODEMIRROR SCRIPTS -------------------------------------------------->
+<script type="text/javascript" src="codemirror-5.43.0/lib/codemirror.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/addon/hint/show-hint.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/addon/hint/xml-hint.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/addon/fold/xml-fold.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/mode/htmlmixed/htmlmixed.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/mode/javascript/javascript.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/mode/css/css.js"></script>
+
+<script type="text/javascript" src="codemirror-5.43.0/lib/codemirror.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/addon/edit/closetag.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/addon/edit/matchtags.js"></script>
+<script type="text/javascript" src="js/decipher-clips.js"></script>
+<script type="text/javascript">
+$(document).ready(function(e) {
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    mode: "xml",
+    lineNumbers: true,
+    autoCloseTags: true,
+    matchClosing: true
+  });
+    
+
+  var decipherclips = new DecipherClips(editor)
+
+  editor.setOption("extraKeys", {
+  	">": function(cm) {
+  		CodeMirror.commands.closeTag()
+  	},
+    "Ctrl-1": function() { 
+        decipherclips.makeRows() 
+    },
+    "Ctrl-2": function() { 
+        decipherclips.makeCols() 
+    },
+    "Ctrl-3": function() { 
+        decipherclips.makeChoices() 
+    },
+    "Ctrl-4": function() { 
+        decipherclips.makeRowsMatchValues() 
+    },
+    "Ctrl-5": function() { 
+        decipherclips.makeColsMatchValues() 
+    },
+    "Ctrl-6": function() { 
+        decipherclips.makeChoicesMatchValues() 
+    },
+    "Ctrl-7": function() { 
+        decipherclips.addValues() 
+    },
+    "Ctrl-8": function() { 
+        decipherclips.removeValues() 
+    },
+    "Alt-1": function() { 
+        decipherclips.makeRowsMatchLabel() 
+    },
+    "Alt-2": function() { 
+        decipherclips.makeColsMatchLabel() 
+    },
+    "Alt-3": function() { 
+        decipherclips.makeChoicesMatchLabel() 
+    },
+    "Ctrl-R": function() { 
+        decipherclips.makeRadio() 
+    },
+    "Ctrl-Y": function() { 
+        decipherclips.makeTextbox() 
+    },
+    "Ctrl-S": function() { 
+        decipherclips.makeSelect() 
+    },
+    "Shift-Y": function() { 
+        decipherclips.makeTextArea() 
+    },
+    "Shift-N": function() {
+        decipherclips.makeNumber()  
+    },
+    "Shift-C": function() { 
+        decipherclips.makeCheckbox() 
+    },
+    "Shift-G": function() {
+        decipherclips.makeGroups()  
+    },
+    "Ctrl-B": function() { 
+        decipherclips.makeBlock() 
+    },
+    "Ctrl-L": function() { 
+        decipherclips.makeLoop() 
+    },
+    "Ctrl-H": function() { 
+        decipherclips.makeHTML() 
+    },
+    "Alt-G": function() {
+       openHelperDialog(editor.codemirror, "Enter group to assign", function(e) {
+           decipherclips.assignGroup(e)
+       })
+    },
+    "Alt-R": function() {
+        decipherclips.removeGroup()  
+    },
+    "Alt-W": function() {
+        openHelperDialog(editor.codemirror, "Enter tag", function(e) {
+            decipherclips.wrapTag(e)
+        })  
+    }
+  })
+
+  var themespath = window.location.href + "codemirror-5.43.0/theme/"
+  //Insert themes 
+  $.get(themespath, function(data) {
+  	$(data).find("a").each(function(index, element) {
+  		$ ("head").append($("<link>", {
+  			"rel": "stylesheet",
+  			"href": themespath + $(element).attr("href")
+  		}))
+  	})
+  })
+
+
+})
+</script>
+<script type="text/javascript"></script>
+</body>
+</html>

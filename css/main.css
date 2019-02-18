@@ -1,0 +1,7 @@
+#code-container {
+	height: calc(100vh - 56px);
+}
+
+#code-container .CodeMirror{
+	height: 100%;
+}
