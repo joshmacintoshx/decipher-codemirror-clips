@@ -169,26 +169,26 @@ $(document).ready(function(e) {
         decipherclips.makeGroups()  
     },
     "Ctrl-B": function() { 
-        decipherclips.makeBlock() 
+      var blockLabel = prompt("Enter label for block: ")
+      decipherclips.makeBlock(blockLabel) 
     },
     "Ctrl-L": function() { 
         decipherclips.makeLoop() 
     },
     "Ctrl-H": function() { 
-        decipherclips.makeHTML() 
+        var htmlLabel = prompt("Enter label for HTML: ")
+        decipherclips.makeHTML(htmlLabel) 
     },
     "Alt-G": function() {
-       openHelperDialog(editor.codemirror, "Enter group to assign", function(e) {
-           decipherclips.assignGroup(e)
-       })
+      var group = prompt("Enter group to assign: ")
+      decipherclips.assignGroup(group)
     },
     "Alt-R": function() {
         decipherclips.removeGroup()  
     },
     "Alt-W": function() {
-        openHelperDialog(editor.codemirror, "Enter tag", function(e) {
-            decipherclips.wrapTag(e)
-        })  
+      var tag = prompt("Enter tag: ")
+      decipherclips.wrapTag(tag)  
     }
   })
 

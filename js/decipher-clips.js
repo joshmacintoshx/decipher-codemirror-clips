@@ -443,20 +443,20 @@
         this.codemirror.replaceSelection(output)
     }
 
-    DecipherClips.prototype.makeHTML = function() {
-        var selection = this.cleanInput(this.codemirror.getSelection().split("\n"))
-        var output = "<html label=\"\" where=\"survey\">\n"
-        for(var i = 0; i < selection.length; i++) {
-            output += selection[i].replace(/^\s*$/, "<br/>".repeat(2)) + "\n"
-        }
+    DecipherClips.prototype.makeHTML = function(label) {
+        var selection = this.codemirror.getSelection().trim()
+        var output = "<html label=\"" + label + "\" where=\"survey\">\n"
+        output += selection.length > 0 ? selection.replace(/^\s*$/gm, "<br/>".repeat(2)) + "\n" : "\n".repeat(3)
         output += "</html>"
         output += "\n<suspend/>"
         this.codemirror.replaceSelection(output)
     }
 
-    DecipherClips.prototype.makeBlock = function() {
-        var selection = this.codemirror.getSelection()
-        var output = "<block label=\"\" cond=\"1\">\n\n</block>"
+    DecipherClips.prototype.makeBlock = function(label) {
+        var selection = this.codemirror.getSelection().trim()
+        var output = "<block label=\"" + label + "\" cond=\"1\">"
+        output += selection.length > 0 ? "\n" + selection + "\n" : "\n"
+        output += "</block>"
         this.codemirror.replaceSelection(output)
     }
 
