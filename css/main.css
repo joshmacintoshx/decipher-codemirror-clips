@@ -7,6 +7,10 @@
 	height: 100%;
 }
 
+#code {
+	display: none;
+}
+
 #nav-toolbar {
 	background-color: rgb(28, 32, 34) !important;
 	padding: 0;
@@ -16,10 +20,20 @@
 	color: rgba(255, 255, 255, 0.7) !important;
 }
 
+#nav-toolbar .dropdown-item:hover {
+	background-color: #007bff !important;
+	color: #fff !important;
+}
+
 .tab-pane-setting {
 	padding: 1em;
 	min-height: 360px;
 	max-height: 360px;
 	overflow: auto;
 }
+
+.hidden {
+	display: none;
+}
+
 

@@ -2,9 +2,65 @@
 <html>
 <head>
 	<title>Decipher Clips</title>
-	<link rel="stylesheet" href="codemirror-5.43.0/lib/codemirror.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/3024-day.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/3024-night.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/abcdef.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/ambiance-mobile.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/ambiance.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/base16-dark.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/base16-light.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/bespin.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/blackboard.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/cobalt.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/colorforth.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/darcula.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/dracula.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/duotone-dark.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/duotone-light.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/eclipse.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/elegant.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/erlang-dark.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/gruvbox-dark.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/hopscotch.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/icecoder.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/idea.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/isotope.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/lesser-dark.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/liquibyte.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/lucario.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/material.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/mbo.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/mdn-like.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/midnight.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/monokai.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/neat.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/neo.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/night.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/oceanic-next.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/panda-syntax.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/paraiso-dark.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/paraiso-light.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/pastel-on-dark.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/railscasts.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/rubyblue.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/seti.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/shadowfox.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/solarized.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/ssms.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/the-matrix.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/tomorrow-night-bright.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/tomorrow-night-eighties.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/ttcn.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/twilight.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/vibrant-ink.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/xq-dark.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/xq-light.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/yeti.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/theme/zenburn.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/lib/codemirror.css">
   <link rel="stylesheet" href="codemirror-5.43.0/addon/hint/show-hint.css">
 	<link rel="stylesheet" href="codemirror-5.43.0/addon/dialog/dialog.css">
+  <link rel="stylesheet" type="text/css" href="codemirror-5.43.0/addon/fold/foldgutter.css">
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
@@ -23,10 +79,11 @@
           File
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Open</a>
+          <a class="dropdown-item" href="#" data-input-toggle="open-file-input">Open</a>
           <a class="dropdown-item" href="#">Save</a>
+          <input type="file" name="textfile" id="open-file-input" class="hidden">
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Close</a>
+          <a class="dropdown-item" href="#" onclick="close()">Close</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -109,45 +166,159 @@
     </div>
   </div>
 </div>
-
+<!-------------------------- CODEMIRROR SCRIPTS -------------------------------------------------->
+<script type="text/javascript" src="codemirror-5.43.0/lib/codemirror.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/mode/xml/xml.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/addon/fold/foldgutter.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/addon/fold/foldcode.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/addon/fold/xml-fold.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/mode/htmlmixed/htmlmixed.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/addon/hint/show-hint.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/addon/hint/xml-hint.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/addon/hint/html-hint.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/addon/hint/javascript-hint.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/addon/edit/closetag.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/addon/edit/trailingspace.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/addon/edit/matchtags.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/addon/edit/closebrackets.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/addon/scroll/annotatescrollbar.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/addon/search/matchesonscrollbar.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/addon/dialog/dialog.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/addon/search/jump-to-line.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/addon/search/search.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/addon/search/match-highlighter.js"></script>
+<script type="text/javascript" src="codemirror-5.43.0/addon/search/searchcursor.js"></script>
+<script type="text/javascript" src="js/decipher-clips.js"></script>
 <!------------------------ BOOTSTRAP SCRIPTS --------------------------------------------------->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<!-------------------------- CODEMIRROR SCRIPTS -------------------------------------------------->
-<script type="text/javascript" src="codemirror-5.43.0/lib/codemirror.js"></script>
-<script type="text/javascript" src="codemirror-5.43.0/addon/hint/show-hint.js"></script>
-<script type="text/javascript" src="codemirror-5.43.0/addon/hint/xml-hint.js"></script>
-<script type="text/javascript" src="codemirror-5.43.0/addon/fold/xml-fold.js"></script>
-<script type="text/javascript" src="codemirror-5.43.0/addon/dialog/dialog.js"></script>
-<script type="text/javascript" src="codemirror-5.43.0/addon/search/search.js"></script>
-<script type="text/javascript" src="codemirror-5.43.0/mode/htmlmixed/htmlmixed.js"></script>
-<script type="text/javascript" src="codemirror-5.43.0/mode/javascript/javascript.js"></script>
-<script type="text/javascript" src="codemirror-5.43.0/mode/css/css.js"></script>
 
-<script type="text/javascript" src="codemirror-5.43.0/lib/codemirror.js"></script>
-<script type="text/javascript" src="codemirror-5.43.0/addon/edit/closetag.js"></script>
-<script type="text/javascript" src="codemirror-5.43.0/addon/edit/matchtags.js"></script>
-<script type="text/javascript" src="js/decipher-clips.js"></script>
 <script type="text/javascript">
 $(document).ready(function(e) {
+
+  var questionElements = ["col", "row", "choice"]
+
+  var questionAttributes = {
+    adim: ["rows","cols","choices","auto"],
+    aggregate: null,
+    alt: null,
+    altLabel: null,
+    averages: ["none","rows","cols","choices","nosummary","summary"],
+    below: null,
+    blankIfZero: ["1", "0"],
+    blankValue: ["1", "0"],
+    choiceCond: null,
+    choiceGroups: ["report","survey","restrict"],
+    choiceShuffle: ["flip","rflip","rotate","reverse-rotate","rrotate"],
+    colCond: null,
+    colGroups: ["report","survey","restrict"],
+    colLegend: ["default","none","both","top","bottom","group","beforeGroup"],
+    colLegendRows: null,
+    colShuffle: ["flip","rflip","rotate","reverse-rotate","rrotate"],
+    cond: null,
+    comment: null,
+    dataSource: null,
+    dataRef: null,
+    exec: null,
+    grouping: null,
+    horizontalPercentages: ["1", "0"],
+    keepWith: null,
+    label: null,
+    noTranslate: ["title","comment"],
+    open: ["default","left","right"],
+    optional: ["1", "0"],
+    pii: null,
+    ratingDirection: ["default","reverse"],
+    rowCond: null,
+    rowGroups: ["report","survey","restrict"],
+    rowLegend: ["default","both","right","left"],
+    rowShuffle: ["flip","rflip","rotate","reverse-rotate","rrotate"],
+    showSource: ["1", "0"],
+    shuffle: ["none","rows","cols","choices"],
+    shuffleBy: null,
+    sort: ["none","rows","cols","choices","desc","asc","percentages"],
+    sortChoices: ["none","asc","desc","survey","report"],
+    sortCols: ["none","asc","desc","survey","report"],
+    sortRows: ["none","asc","desc","survey","report"],
+    style: null,
+    title: null,
+    type: ["none","rating"],
+    uses: null,
+    values: ["none","order"],
+    where: ["survey","report","summary","none","notdp"],
+    tv: ["auto","off","force"]
+  }
+
+  var tags = {
+    radio: {
+      attrs: questionAttributes,
+      children: questionElements
+    },
+    checkbox: {
+      attrs: questionAttributes,
+      children: questionElements
+    },
+    select: {
+      attrs: questionAttributes,
+      children: questionElements
+    },
+    text: {
+      attrs: questionAttributes,
+      children: questionElements
+    },
+    textarea: {
+      attrs: questionAttributes,
+    },
+    number: {
+      attrs: questionAttributes,
+      children: questionElements
+    }
+  };
+
+  function completeAfter(cm, pred) {
+    var cur = cm.getCursor();
+    if (!pred || pred()) setTimeout(function() {
+      if (!cm.state.completionActive)
+        cm.showHint({completeSingle: false});
+    }, 100);
+      return CodeMirror.Pass;
+  }
+
+  function completeIfAfterLt(cm) {
+    return completeAfter(cm, function() {
+      var cur = cm.getCursor();
+      return cm.getRange(CodeMirror.Pos(cur.line, cur.ch - 1), cur) == "<";
+    });
+  }
+
+  function completeIfInTag(cm) {
+    return completeAfter(cm, function() {
+      var tok = cm.getTokenAt(cm.getCursor());
+      if (tok.type == "string" && (!/['"]/.test(tok.string.charAt(tok.string.length - 1)) || tok.string.length == 1)) return false;
+      var inner = CodeMirror.innerMode(cm.getMode(), tok.state).state;
+      return inner.tagName;
+    });
+  }
 
   var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
     mode: "xml",
     lineNumbers: true,
     autoCloseTags: true,
+    autoCloseBrackets: true,
     matchClosing: true,
-    theme: "solarized dark"
+    theme: localStorage.getItem("editortheme") || "solarized dark",
+    foldGutter: true,
+    gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+    hintOptions: {schemaInfo: tags},
+    tabSize: 2
   });
     
 
   var decipherclips = new DecipherClips(editor)
 
   editor.setOption("extraKeys", {
-  	">": function(cm) {
-  		CodeMirror.commands.closeTag()
-  	},
     "Ctrl-1": function() { 
         decipherclips.makeRows() 
     },
@@ -204,16 +375,16 @@ $(document).ready(function(e) {
     },
     "Ctrl-B": function() { 
       var blockLabel = prompt("Enter label for block: ")
-      decipherclips.makeBlock(blockLabel) 
+      blockLabel != null ? decipherclips.makeBlock(blockLabel) : null
     },
     "Ctrl-L": function() { 
         decipherclips.makeLoop() 
     },
     "Ctrl-H": function() { 
         var htmlLabel = prompt("Enter label for HTML: ")
-        decipherclips.makeHTML(htmlLabel) 
+        htmlLabel != null ? decipherclips.makeHTML(htmlLabel) : null
     },
-    "Alt-G": function() {
+    "Alt-A": function() {
       var group = prompt("Enter group to assign: ")
       decipherclips.assignGroup(group)
     },
@@ -223,31 +394,55 @@ $(document).ready(function(e) {
     "Alt-W": function() {
       var tag = prompt("Enter tag: ")
       decipherclips.wrapTag(tag)  
+    },
+    "Ctrl-F": function() {
+      CodeMirror.commands.find(editor)
+    },
+    "Ctrl-.": function() {
+      CodeMirror.commands.findNext(editor)
+    },
+    "Ctrl-,": function() {
+      CodeMirror.commands.findPrev(editor)
+    },
+    "Shift-Ctrl-R": function() {
+      CodeMirror.commands.replace(editor)
+    },
+    "Alt-R": function() {
+      CodeMirror.commands.replaceAll(editor)
+    },
+    "'<'": completeAfter,
+    "'/'": completeIfAfterLt,
+    "' '": completeIfInTag,
+    "'='": completeIfInTag,
+    "Ctrl-Space": "autocomplete"
+  })
+
+
+  //Open File Button 
+  $("a[data-input-toggle='open-file-input']").on("click", function(e) {
+    $("#open-file-input").click()
+  })
+
+  //Handle file open event 
+  $("#open-file-input").on("change", function(e) {
+    var file = event.target.files[0]
+    var reader = new FileReader()
+    console.log(file.name)
+    if(!/[a-zA-Z0-9+_-]+(?=\.xml)/.test(file.name)) {
+      alert("Invalid file")
+    } else {
+      reader.onload = function(event) {
+        editor.setValue(event.target.result)
+      }
+      reader.readAsText(file)
     }
   })
+  //Append theme option
 
-  var themespath = "codemirror-5.43.0/theme/"
-  //Insert themes 
-  $.get(themespath, function(data) {
-  	$(data).find("a").each(function(index, element) {
-
-      //Inject css files to <head>
-  		$ ("head").append($("<link>", {
-  			"rel": "stylesheet",
-  			"href": themespath + $(element).attr("href")
-  		}))
-      //Append theme to theme selector 
-      var themeName = $(element).attr("href").match(/[a-zA-Z0-9+_-]+(?=\.css)/)
-
-      $("#themeSelector").append($("<option>", {
-        "text": themeName,
-        "value": themeName
-      }))
-  	})
-  })
 
   $("#themeSelector").change(function(e) {
     editor.setOption("theme", e.currentTarget.value)
+    localStorage.setItem("themesetting", e.currentTarget.value)
   })
 
   hotkeySettings = {
@@ -341,6 +536,33 @@ $(document).ready(function(e) {
     }
   }
 
+  //Append themes to theme selector 
+
+  var themes = $("link[href*='theme']")
+  var themeSelector = $("#themeSelector")
+
+  themes.each(function(index, element) {
+    var themeName = $(element).attr("href").match(/[a-zA-Z0-9+_-]+(?=\.css)/)
+    if(themeName == "solarized") {
+      $(themeSelector)
+      .append($("<option>", {
+        value: themeName + " light",
+        text: themeName + " light"
+      }))
+      .append($("<option>", {
+        value: themeName + " dark",
+        text: themeName + " dark"
+      }))
+    } else {
+      $(themeSelector).append($("<option>", {
+        value: themeName,
+        text: themeName
+      }))
+    }
+  })
+
+  //Set default theme
+  $(themeSelector).val(editor.getOption("theme"))
 
   for(var property in hotkeySettings) {
     

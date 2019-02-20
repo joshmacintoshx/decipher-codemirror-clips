@@ -456,7 +456,7 @@
         var selection = this.codemirror.getSelection().trim()
         var tab = "\x20".repeat(2)
         var output = "<block label=\"" + label + "\" cond=\"1\">\n"
-        output += selection.length > 0 ? selection.split("\n").map(x => tab + x).join("\n") : "\n"
+        output += selection.length > 0 ? selection.split("\n").map(x => tab + x).join("\n") : ""
         output += "\n</block>"
         this.codemirror.replaceSelection(output)
     }
