@@ -454,9 +454,10 @@
 
     DecipherClips.prototype.makeBlock = function(label) {
         var selection = this.codemirror.getSelection().trim()
-        var output = "<block label=\"" + label + "\" cond=\"1\">"
-        output += selection.length > 0 ? "\n" + selection + "\n" : "\n"
-        output += "</block>"
+        var tab = "\x20".repeat(2)
+        var output = "<block label=\"" + label + "\" cond=\"1\">\n"
+        output += selection.length > 0 ? selection.split("\n").map(x => tab + x).join("\n") : "\n"
+        output += "\n</block>"
         this.codemirror.replaceSelection(output)
     }
 

@@ -1,7 +1,25 @@
 #code-container {
-	height: calc(100vh - 56px);
+	height: calc(100vh - 40px);
+	padding: 0;
 }
 
 #code-container .CodeMirror{
 	height: 100%;
 }
+
+#nav-toolbar {
+	background-color: rgb(28, 32, 34) !important;
+	padding: 0;
+}
+
+#nav-toolbar .navbar-nav .nav-item > a {
+	color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.tab-pane-setting {
+	padding: 1em;
+	min-height: 360px;
+	max-height: 360px;
+	overflow: auto;
+}
+
