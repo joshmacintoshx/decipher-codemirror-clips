@@ -226,7 +226,7 @@ $(document).ready(function(e) {
     }
   })
 
-  var themespath = window.location.origin +  window.location.pathname + "codemirror-5.43.0/theme/"
+  var themespath = "codemirror-5.43.0/theme/"
   //Insert themes 
   $.get(themespath, function(data) {
   	$(data).find("a").each(function(index, element) {
