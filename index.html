@@ -231,6 +231,7 @@ $(document).ready(function(e) {
     optional: ["1", "0"],
     pii: null,
     ratingDirection: ["default","reverse"],
+    rightOf: null,
     rowCond: null,
     rowGroups: ["report","survey","restrict"],
     rowLegend: ["default","both","right","left"],
@@ -248,7 +249,103 @@ $(document).ready(function(e) {
     uses: null,
     values: ["none","order"],
     where: ["survey","report","summary","none","notdp"],
-    tv: ["auto","off","force"]
+    tv: ["auto","off","force"],
+    translateable: ["1", "0"],
+    randomize: ["1", "0"],
+    disabled: ["1", "0"]
+  }
+
+  var styleAttributes = {
+    name: [
+      "global.page.head",
+      "question.header",
+      "question.element",
+      "respview.client.meta",
+      "survey.question",
+      "question.left",
+      "respview.client.css",
+      "survey.question.instructions",
+      "question.right",
+      "respview.client.js",
+      "survey.question.answers.start",
+      "el.radio",
+      "survey.header",
+      "question.group-column",
+      "el.checkbox",
+      "survey.logo",
+      "question.group-column-cell",
+      "el.select.header",
+      "buttons",
+      "question.top-legend",
+      "el.select.default",
+      "button.continue",
+      "question.left-blank-legend",
+      "el.select.element",
+      "button.finish",
+      "question.top-legend-item",
+      "el.select.footer",
+      "button.cancel",
+      "question.right-blank-legend",
+      "el.textarea",
+      "survey.completion",
+      "question.group-3",
+      "el.noanswer",
+      "survey.respview.footer",
+      "question.group-2",
+      "el.text",
+      "survey.respview.footer.support",
+      "question.group",
+      "el.open",
+      "button.goback",
+      "question.row",
+      "el.image",
+      "page.head",
+      "question.col-legend-row",
+      "question.col-legend-row-item",
+      "question.na.row",
+      "question.bottom-legend",
+      "question.bottom-legend-item",
+      "question.footer",
+      "survey.question.answers.end",
+      "question.after"
+    ],
+    label: null,
+    copy: null,
+    cond: ["0", "1"],
+    rows: null,
+    cols: null,
+    mode: ["instead", "before", "after"],
+    with: null,
+    wrap: ["ready"]
+  }
+
+  var questionElementsAttributes = {
+    open: ["1", "0"],
+    openSize: null,
+    label: null,
+    groups: null,
+    value: null,
+    exclusive: ["1", "0"],
+    aggregate: ["1", "0"],
+    percentages: ["1", "0"],
+    optional: ["1", "0"],
+    range: null,
+    okUnique: ["1", "0"],
+    openOptional: ["1", "0"],
+    colLegend: ["1", "0"],
+    extraError: ["1", "0"],
+    amount: null,
+    size: null,
+    averages: ["1", "0"],
+    cond: ["1", "0"]
+  }
+
+  var checkboxAttributes = {
+    atleast: null,
+    atmost: null,
+    exactly: null,
+    pipeMultiple: null,
+    groupRestrict: ["none", "cols"]
   }
 
   var tags = {
@@ -257,7 +354,7 @@ $(document).ready(function(e) {
       children: questionElements
     },
     checkbox: {
-      attrs: questionAttributes,
+      attrs: Object.assign({}, questionAttributes, checkboxAttributes),
       children: questionElements
     },
     select: {
@@ -274,6 +371,18 @@ $(document).ready(function(e) {
     number: {
       attrs: questionAttributes,
       children: questionElements
+    },
+    row: {
+      attrs: questionElementsAttributes
+    },
+    col: {
+      attrs: questionElementsAttributes
+    },
+    choice: {
+      attrs: questionElementsAttributes
+    },
+    style: {
+      attrs: styleAttributes
     }
   };
 
@@ -414,9 +523,9 @@ $(document).ready(function(e) {
     "'/'": completeIfAfterLt,
     "' '": completeIfInTag,
     "'='": completeIfInTag,
+    "\"": completeIfInTag,
     "Ctrl-Space": "autocomplete"
   })
-
 
   //Open File Button 
   $("a[data-input-toggle='open-file-input']").on("click", function(e) {
@@ -437,6 +546,7 @@ $(document).ready(function(e) {
       reader.readAsText(file)
     }
   })
+
   //Append theme option
 
 
