@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Decipher Clips</title>
+  <title>Decipher Clips</title>
   <link rel="stylesheet" href="codemirror-5.43.0/theme/3024-day.css">
   <link rel="stylesheet" href="codemirror-5.43.0/theme/3024-night.css">
   <link rel="stylesheet" href="codemirror-5.43.0/theme/abcdef.css">
@@ -59,10 +59,10 @@
   <link rel="stylesheet" href="codemirror-5.43.0/theme/zenburn.css">
   <link rel="stylesheet" href="codemirror-5.43.0/lib/codemirror.css">
   <link rel="stylesheet" href="codemirror-5.43.0/addon/hint/show-hint.css">
-	<link rel="stylesheet" href="codemirror-5.43.0/addon/dialog/dialog.css">
+  <link rel="stylesheet" href="codemirror-5.43.0/addon/dialog/dialog.css">
   <link rel="stylesheet" type="text/css" href="codemirror-5.43.0/addon/fold/foldgutter.css">
-	<link rel="stylesheet" href="css/main.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
 
@@ -110,7 +110,7 @@
 </nav>
 
 <div class="container-fluid" id="code-container">
-	<textarea id="code"></textarea>
+  <textarea id="code"></textarea>
 </div>
 
 <!-- Modal -->
@@ -252,7 +252,9 @@ $(document).ready(function(e) {
     tv: ["auto","off","force"],
     translateable: ["1", "0"],
     randomize: ["1", "0"],
-    disabled: ["1", "0"]
+    disabled: ["1", "0"],
+    "ss:rowClassNames": null,
+    "ss:colClassNames": null
   }
 
   var styleAttributes = {
@@ -348,6 +350,8 @@ $(document).ready(function(e) {
     groupRestrict: ["none", "cols"]
   }
 
+
+
   var tags = {
     radio: {
       attrs: questionAttributes,
@@ -411,6 +415,7 @@ $(document).ready(function(e) {
     });
   }
 
+
   var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
     mode: "xml",
     lineNumbers: true,
@@ -424,10 +429,41 @@ $(document).ready(function(e) {
     tabSize: 2
   });
     
+  // editor.on("keyup", function(cm) {
+  //   if (event.keyCode > 64 && event.keyCode < 91){
+  //     CodeMirror.showHint(cm, CodeMirror.hint.decipherHint, {completeSingle: false})
+  //   }    
+  // })
+  // //Experimental code
+  // CodeMirror.registerHelper("hint", "decipherHint", function(editor, options) {
+  //     console.log(options)
+  //     // var cur = editor.getCursor();
+  //     // var curLine = editor.getLine(cur.line);
+  //     // var start = cur.ch;
+  //     // var end = start;
+  //     // while (end < curLine.length && /[\w\:]/.test(curLine.charAt(end))) ++end;
+  //     // while (start && /[\w\:]/.test(curLine.charAt(start - 1))) --start;
+  //     // var curWord = start !== end && curLine.slice(start, end);
+  //     // var filterRegex = new RegExp("^" + curWord, "i")
+  // })
+
+  // CodeMirror.commands.autocomplete = function(cm) {
+  //   CodeMirror.showHint(cm, CodeMirror.hint.decipherHint)
+  // }
+
 
   var decipherclips = new DecipherClips(editor)
 
   editor.setOption("extraKeys", {
+    "F1": function() {
+      decipherclips.convertToRows()
+    },
+    "F2": function() {
+      decipherclips.convertToCols()
+    },
+    "F3": function() {
+      decipherclips.convertToChoices()
+    },
     "Ctrl-1": function() { 
         decipherclips.makeRows() 
     },
@@ -465,7 +501,7 @@ $(document).ready(function(e) {
         decipherclips.makeRadio() 
     },
     "Ctrl-E": function() { 
-        decipherclips.makeTextbox() 
+        decipherclips.makeText() 
     },
     "Ctrl-S": function() { 
         decipherclips.makeSelect() 
@@ -519,13 +555,19 @@ $(document).ready(function(e) {
     "Alt-R": function() {
       CodeMirror.commands.replaceAll(editor)
     },
+    "Alt-C": function() {
+      decipherclips.makeComment()
+    },
+    hintOptions: {schemaInfo: tags},
     "'<'": completeAfter,
     "'/'": completeIfAfterLt,
-    "' '": completeIfInTag,
     "'='": completeIfInTag,
     "\"": completeIfInTag,
     "Ctrl-Space": "autocomplete"
   })
+
+
+
 
   //Open File Button 
   $("a[data-input-toggle='open-file-input']").on("click", function(e) {
