@@ -649,6 +649,18 @@
         this.codemirror.replaceSelection(output, "around")
     }
 
+    DecipherClips.prototype.makeDefine = function(label) {
+        var selection = this.codemirror.getSelection().split("\n")
+        var tab = "\x20".repeat(2)
+        var output = "<define label=\"" + label + "\">\n"
+        for(var i = 0; i < selection.length; i++) {
+            output += tab + selection[i].trim() + "\n"
+        }
+        output += "</define>"
+        output += "\n<suspend/>"
+        this.codemirror.replaceSelection(output, "around")        
+    }
+
     DecipherClips.prototype.makePipe = function(label) {
         var selection = this.codemirror.getSelection().split("\n")
         var tab = "\x20".repeat(2)
