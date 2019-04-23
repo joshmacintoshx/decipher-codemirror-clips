@@ -14,15 +14,22 @@
     }
     
     DecipherClips.prototype.formatQuestion = function(input) {
-        var extractedLabel = input.match(/\w+/)[0].trim()
-        var label = /^\d+$/.test(extractedLabel) ? "Q" + extractedLabel : extractedLabel
-        var elements = input.match(/<comment.*|<col.*|<group.*|<row.*|<choice.*|<exec.*>.*<\/comment.*><\/<col.*|<\/group.*|<\/row.*|<\/choice.*|<\/exec.*>/gm)
-        var title = input
-        .replace(/\w+\.*/, "")
-        .replace(/<comment.*|<col.*|<group.*|<row.*|<choice.*|<exec.*>.*<\/comment.*><\/<col.*|<\/group.*|<\/row.*|<\/choice.*|<\/exec.*>/gm, "")
-        .replace(/\n/gm, "\x20")
-        .trim()
-        elements = elements != null ? elements.map(x => x.trim()) : null
+        var filterElements = [
+            "<comment", 
+            "<group", 
+            "<row", 
+            "<col",
+            "<choice",
+            "<exec",
+            "<validate",
+            "<insert"
+        ]
+        var filteredInput = this.cleanInput(input.split("\n"))
+        var elements = filteredInput.filter(x => filterElements.some(y => x.startsWith(y)))
+        var cleanInput = filteredInput.filter(x => !elements.includes(x)).join(" ")
+        var extractedInput = cleanInput.match(/([a-zA-Z0-9]+)(?:[\=\:\.\s]*)(.*)/m)
+        var label = /^\d+$/.test(extractedInput[1]) ? "Q" + extractedInput[1] : extractedInput[1]
+        var title = extractedInput[2].trim()
         return {questionLabel: label, questionTitle: title, questionElements: elements}
     }
     
@@ -153,6 +160,22 @@
         }
         output = output.replace(/\n$/, "")
         this.codemirror.replaceSelection(output, "around")
+    }
+
+    DecipherClips.prototype.makeCases = function() {
+        var selection = this.cleanInput(this.codemirror.getSelection().split("\n"))
+        var output = ""
+        var tab = "\x20".repeat(2)
+        for(var i = 0; i < selection.length; i++) {
+            var tag = "case"
+            var innerText = this.escapeInput(selection[i]).trim()
+            var attributes = {
+                label: "c" + (i+1),
+            }
+            output += this.constructTag(tag,attributes,innerText) + "\n"
+        }
+        output = output.replace(/\n$/, "")
+        this.codemirror.replaceSelection(output, "around")        
     }
     
     DecipherClips.prototype.makeRows = function() {
@@ -546,7 +569,7 @@
         var attributes = {
             optional: 0
         }
-        var output = this.constructQuestion(tag,label, title, attributes, elements)
+        var output = this.constructQuestion(tag, label, title, attributes, elements)
         output += "\n<suspend/>"
         this.codemirror.replaceSelection(output, "around")
     }
@@ -561,7 +584,7 @@
         var attributes = {
             atleast: 1
         }
-        var output = this.constructQuestion(tag,label, title, attributes, elements)
+        var output = this.constructQuestion(tag, label, title, attributes, elements)
         output += "\n<suspend/>"
         this.codemirror.replaceSelection(output, "around")
     }
@@ -574,7 +597,7 @@
         var label = input["questionLabel"]
         var elements = input["questionElements"]
         var attributes = null
-        var output = this.constructQuestion(tag,label, title, attributes, elements)
+        var output = this.constructQuestion(tag, label, title, attributes, elements)
         output += "\n<suspend/>"
         this.codemirror.replaceSelection(output, "around")
     }
@@ -590,7 +613,7 @@
             size: 3,
             optional: 0
         }
-        var output = this.constructQuestion(tag,label, title, attributes, elements)
+        var output = this.constructQuestion(tag, label, title, attributes, elements)
         output += "\n<suspend/>"
         this.codemirror.replaceSelection(output, "around")
     }
@@ -606,7 +629,7 @@
             size: 40,
             optional: 0
         }
-        var output = this.constructQuestion(tag,label, title, attributes, elements)
+        var output = this.constructQuestion(tag, label, title, attributes, elements)
         output += "\n<suspend/>"
         this.codemirror.replaceSelection(output, "around")
     }
@@ -621,9 +644,21 @@
         var attributes = {
             optional: 0
         }
-        var output = this.constructQuestion(tag,label, title, attributes, elements)
+        var output = this.constructQuestion(tag, label, title, attributes, elements)
         output += "\n<suspend/>"
         this.codemirror.replaceSelection(output, "around")
+    }
+
+    DecipherClips.prototype.makePipe = function(label) {
+        var selection = this.codemirror.getSelection().split("\n")
+        var tab = "\x20".repeat(2)
+        var output = "<pipe label=\"" + label + "\">\n"
+        for(var i = 0; i < selection.length; i++) {
+            output += tab + selection[i].trim() + "\n"
+        }
+        output += "</pipe>"
+        output += "\n<suspend/>"
+        this.codemirror.replaceSelection(output, "around")       
     }
     
     DecipherClips.prototype.addValues = function() {
@@ -731,4 +766,5 @@
         var output = "<comment>" + selection.trim().replace(/\n/gm, "\x20") + "</comment>"
         this.codemirror.replaceSelection(output, "around")
     }
+
     

@@ -39,7 +39,7 @@ jQuery(function() {
                   editor.replaceSelection(text)
               })
               .catch(() => {
-            alert("Command failed")
+                alert("Command failed")
               })
             }
           },
@@ -261,6 +261,19 @@ jQuery(function() {
                     name: "Make comment",
                     callback: function() {
                       decipherclips.makeComment()
+                    }
+                  },
+                  MakePipe: {
+                    name: "Make pipe",
+                    callback: function() {
+                      var label = prompt("Enter label: ")
+                      decipherclips.makePipe(label)
+                    }
+                  },
+                  MakeCases: {
+                    name: "Make cases",
+                    callback: function() {
+                      decipherclips.makeCases()
                     }
                   },
                   WrapTag: {
