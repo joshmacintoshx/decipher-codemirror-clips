@@ -200,6 +200,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.ui.position.js"></script>
 
+<script type="text/javascript" src="js/decipher.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function(e) {
 
@@ -422,7 +424,7 @@ $(document).ready(function(e) {
 
 
   var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-    mode: "xml",
+    mode: "decipher",
     lineNumbers: true,
     autoCloseTags: true,
     autoCloseBrackets: true,
@@ -435,35 +437,15 @@ $(document).ready(function(e) {
   });
 
   window.editor = editor
-    
-  // editor.on("keyup", function(cm) {
-  //   if (event.keyCode > 64 && event.keyCode < 91){
-  //     CodeMirror.showHint(cm, CodeMirror.hint.decipherHint, {completeSingle: false})
-  //   }    
-  // })
-  // //Experimental code
-  // CodeMirror.registerHelper("hint", "decipherHint", function(editor, options) {
-  //     console.log(options)
-  //     // var cur = editor.getCursor();
-  //     // var curLine = editor.getLine(cur.line);
-  //     // var start = cur.ch;
-  //     // var end = start;
-  //     // while (end < curLine.length && /[\w\:]/.test(curLine.charAt(end))) ++end;
-  //     // while (start && /[\w\:]/.test(curLine.charAt(start - 1))) --start;
-  //     // var curWord = start !== end && curLine.slice(start, end);
-  //     // var filterRegex = new RegExp("^" + curWord, "i")
-  // })
-
-  // CodeMirror.commands.autocomplete = function(cm) {
-  //   CodeMirror.showHint(cm, CodeMirror.hint.decipherHint)
-  // }
-
 
   var decipherclips = new DecipherClips(editor)
 
   window.decipherclips = decipherclips
 
   editor.setOption("extraKeys", {
+    "Ctrl-K": function() {
+      decipherclips.formatQuestion()
+    },
     "F1": function() {
       decipherclips.convertToRows()
     },
@@ -521,6 +503,9 @@ $(document).ready(function(e) {
     "Ctrl-Q": function() {
         decipherclips.makeNumber()  
     },
+    "Ctrl-M": function() {
+      decipherclips.makeFloat()
+    },
     "Shift-Ctrl-C": function() { 
         decipherclips.makeCheckbox() 
     },
@@ -566,6 +551,12 @@ $(document).ready(function(e) {
     },
     "Alt-C": function() {
       decipherclips.makeComment()
+    },
+    "Alt-T": function() {
+      decipherclips.makeDatePicker()
+    },
+    "Alt-Y": function() {
+      decipherclips.makeSliderRating()
     },
     "'<'": completeAfter,
     "'/'": completeIfAfterLt,
@@ -741,8 +732,6 @@ $(document).ready(function(e) {
     }
     hotkeyTable.append(hotkeyTableRow)
   }
-
-
 })
 
 

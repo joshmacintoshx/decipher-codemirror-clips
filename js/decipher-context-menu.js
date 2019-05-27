@@ -263,6 +263,13 @@ jQuery(function() {
                       decipherclips.makeComment()
                     }
                   },
+                  MakeDefine: {
+                    name: "Make defines",
+                    callback: function() {
+                      var label = prompt("Enter label: ")
+                      decipherclips.makeDefine(label)
+                    }
+                  },                  
                   MakePipe: {
                     name: "Make pipe",
                     callback: function() {
